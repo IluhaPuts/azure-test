@@ -15,8 +15,9 @@ stages:
       - task: DockerCompose@0
         displayName: 'Execute unit tests'
         inputs:
+          action: Run services
           buildImages: true
-          dockerComposeFile: build/docker-compose-unit-test/docker-compose.yaml
+          dockerComposeFile: ./build/docker-compose-unit-test/docker-compose.yaml
       
       - task: PublishTestResults@2
         inputs:
