@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+    webapi-unit-tests:
+        container_name: webapi-unit-tests
+        build: 
+            context: ../..
+            dockerfile: build/docker/web-app-tests.dockerfile
+        volumes:
+            - test_results:/app/test-results
+
+volumes:
+    test_results: 

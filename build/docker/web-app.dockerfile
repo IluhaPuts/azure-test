@@ -6,14 +6,14 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["TestWebApp.csproj", ""]
-RUN dotnet restore "./TestWebApp.csproj"
+COPY . .
+RUN dotnet restore "./TestWebApp.sln"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "TestWebApp.csproj" -c Release -o /app/build
+RUN dotnet build "TestWebApp.sln" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "TestWebApp.csproj" -c Release -o /app/publish
+RUN dotnet publish "TestWebApp.sln" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

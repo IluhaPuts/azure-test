@@ -1,0 +1,8 @@
+steps:
+    - task: Docker@2
+      displayName: build testwebapp
+      inputs:
+        command: build
+        Dockerfile: build/docker/web-app.Dockerfile
+        buildContext: /src
+        tags: web_app_build:latest

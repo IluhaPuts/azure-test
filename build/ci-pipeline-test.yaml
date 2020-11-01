@@ -1,0 +1,29 @@
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-18.04'
+
+stages:
+- stage: build_solution
+  jobs:
+  - job:
+    steps:
+      - template: webapi-build.yaml
+
+      - task: DockerCompose@0
+        displayName: 'Execute unit tests'
+        inputs:
+          buildImages: true
+          dockerComposeFile: build/docker-compose-unit-test/docker-compose.yaml
+      
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: 'NUnit'
+          testResultsFiles: '**/*.xml' 
+          #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
+          #mergeTestResults: false # Optional
+          #failTaskOnFailedTests: false # Optional
+          #testRunTitle: # Optional
+          #buildPlatform: # Optional
+          #buildConfiguration: # Optional
+          #publishRunAttachments: true # Optional

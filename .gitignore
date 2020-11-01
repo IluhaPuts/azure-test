@@ -1,2 +1,8 @@
-bin/*
-obj/*
+bin/
+obj/
+*.dll
+/bin/
+/.vs
+/src/.vs/TestWebApp/v16/.suo
+/src/.vs/TestWebApp/v16/TestStore/0/000.testlog
+/src/.vs/TestWebApp/v16/TestStore/0/testlog.manifest
