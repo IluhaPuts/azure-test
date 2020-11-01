@@ -8,6 +8,9 @@ stages:
   jobs:
   - job:
     steps:
+      - task: CmdLine@2
+          inputs:
+            script: 'ls'
       - template: webapi-build.yaml
 
       - task: DockerCompose@0
