@@ -1,4 +1,4 @@
-- task: Docker@2
+task: Docker@2
     displayName: build testwebapp
     inputs:
     command: build
