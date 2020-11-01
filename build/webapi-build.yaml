@@ -3,6 +3,6 @@ steps:
       displayName: build testwebapp
       inputs:
         command: build
-        Dockerfile: /build/docker/web-app.Dockerfile
-        buildContext: /src
+        Dockerfile: ./build/docker/web-app.dockerfile
+        buildContext: ./src
         tags: web_app_build:latest
