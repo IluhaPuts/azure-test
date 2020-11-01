@@ -18,6 +18,7 @@ stages:
           action: Run services
           buildImages: true
           dockerComposeFile: ./build/docker-compose-unit-test/docker-compose.yaml
+          dockerComposeCommand: up
       
       - task: PublishTestResults@2
         inputs:
