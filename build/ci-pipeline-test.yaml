@@ -15,9 +15,11 @@ stages:
         displayName: build testwebapp
         inputs:
           command: buildAndPush
+          repository: web_app_build
           Dockerfile: ./build/docker/web-app.dockerfile
           buildContext: ./src
-          tags: web_app_build
+          tags: |
+            web_app_build
 
       - script: 'sudo docker images'
 
