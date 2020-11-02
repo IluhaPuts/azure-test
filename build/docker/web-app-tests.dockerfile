@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY --from=base /app .
 
-RUN mkdir /app/test-results
+RUN mkdir test-results
+RUN echo "testset" >> test.txt
 
 RUN dotnet test test.webapp.tests.dll --results-directory:/app/test-results

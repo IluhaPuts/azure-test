@@ -14,7 +14,7 @@ stages:
       - task: Docker@2
         displayName: build testwebapp
         inputs:
-          command: buildAndPush
+          command: build
           repository: web_app_build
           Dockerfile: ./build/docker/web-app.dockerfile
           buildContext: ./src
