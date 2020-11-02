@@ -5,4 +5,4 @@ steps:
         command: build
         Dockerfile: ./build/docker/web-app.dockerfile
         buildContext: ./src
-        tags: web_app_build:latest
+        arguments: --tags web_app_build:latest
