@@ -1,4 +1,4 @@
-FROM web_app_build:latest as base
+FROM web_app_build:v1.0 as base
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS unit-test
 
