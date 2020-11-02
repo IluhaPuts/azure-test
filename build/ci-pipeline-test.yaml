@@ -18,7 +18,7 @@ stages:
           repository: web_app_build
           Dockerfile: ./build/docker/web-app.dockerfile
           buildContext: ./src
-          
+
       - script: 'sudo docker images'
 
       - task: DockerCompose@0
@@ -26,6 +26,7 @@ stages:
         inputs:
           action: Run services
           buildImages: true
+          currentWorking: ./
           dockerComposeFile: ./build/docker-compose-unit-test/docker-compose.yaml
           dockerComposeCommand: run webapi-unit-tests
       
