@@ -18,14 +18,6 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "TestWebApp.dll"]
 
-FROM web_app_build:latest as web_app
-
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS unit-test
-
-WORKDIR /app
-
-COPY --from=web_app /app .
-
 RUN mkdir /app/test-results
 
 RUN dotnet test test.webapp.tests.dll --results-directory:/app/test-results
