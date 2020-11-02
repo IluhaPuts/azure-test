@@ -3,6 +3,6 @@ steps:
       displayName: build testwebapp
       inputs:
         command: build
-        Dockerfile: ./build/docker/web-app.dockerfile
-        buildContext: ./src
-        arguments: --tags web_app_build:v1.0
+        Dockerfile: 'build/docker/web-app.dockerfile'
+        buildContext: './src'
+        arguments: --rm --force-rm --tags web_app_build:v1.0
