@@ -11,6 +11,13 @@ stages:
       - script: 'ls'
       
       #- template: webapi-build.yaml
+      - task: Docker@2
+        displayName: build testwebapp
+        inputs:
+          command: buildAndPush
+          Dockerfile: ./build/docker/web-app.dockerfile
+          buildContext: ./src
+          tags: web_app_build:latest
 
       - task: DockerCompose@0
         displayName: 'Execute unit tests'
@@ -18,7 +25,7 @@ stages:
           action: Run services
           buildImages: true
           dockerComposeFile: ./build/docker-compose-unit-test/docker-compose.yaml
-          dockerComposeCommand: up
+          dockerComposeCommand: run webapi-unit-tests
       
       - task: PublishTestResults@2
         inputs:
