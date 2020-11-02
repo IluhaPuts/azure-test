@@ -17,7 +17,7 @@ stages:
           command: buildAndPush
           Dockerfile: ./build/docker/web-app.dockerfile
           buildContext: ./src
-          tags: web_app_build:latest
+          tags: web_app_build
 
       - task: DockerCompose@0
         displayName: 'Execute unit tests'
