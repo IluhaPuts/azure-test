@@ -19,6 +19,8 @@ stages:
           buildContext: ./src
           tags: web_app_build
 
+      - script: 'sudo docker ps'
+
       - task: DockerCompose@0
         displayName: 'Execute unit tests'
         inputs:
