@@ -10,7 +10,7 @@ stages:
     steps:
       - script: 'ls'
       
-      - template: webapi-build.yaml
+      #- template: webapi-build.yaml
 
       - task: DockerCompose@0
         displayName: 'Execute unit tests'

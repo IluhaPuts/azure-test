@@ -6,8 +6,8 @@ services:
         build: 
             context: ../..
             dockerfile: ./build/docker/web-app-tests.dockerfile
-        volumes:
-            - test_results:/app/test-results
+        #volumes:
+         #   - test_results:/app/test-results
 
-volumes:
-    test_results: 
+#volumes:
+   # test_results: 

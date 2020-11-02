@@ -1,10 +1,30 @@
-FROM web_app_build:latest as base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+WORKDIR /app
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+WORKDIR /src
+COPY . .
+RUN dotnet restore "./TestWebApp.sln"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "TestWebApp.sln" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "TestWebApp.sln" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "TestWebApp.dll"]
+
+FROM web_app_build:latest as web_app
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS unit-test
 
 WORKDIR /app
 
-COPY --from=base /app .
+COPY --from=web_app /app .
 
 RUN mkdir /app/test-results
 
