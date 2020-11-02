@@ -18,9 +18,7 @@ stages:
           repository: web_app_build
           Dockerfile: ./build/docker/web-app.dockerfile
           buildContext: ./src
-          tags: |
-            web_app_build
-
+          
       - script: 'sudo docker images'
 
       - task: DockerCompose@0
