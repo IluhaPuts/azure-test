@@ -8,4 +8,4 @@ COPY --from=base /app .
 
 RUN mkdir test-results
 
-RUN dotnet test test.webapp.tests.dll --results-directory /app/test-results --logger \"trx\"
+RUN dotnet test test.webapp.tests.dll --results-directory /app/test-results --logger trx
