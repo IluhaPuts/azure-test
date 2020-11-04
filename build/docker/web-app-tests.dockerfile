@@ -8,6 +8,8 @@ COPY --from=base /app .
 
 RUN mkdir test-results
 
+VOLUME [ "/app/test-results" ]
+
 RUN dotnet test test.webapp.tests.dll --results-directory /app/test-results --logger trx
 
 RUN exit 0
