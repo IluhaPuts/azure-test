@@ -3,8 +3,8 @@ services:
     webapi-unit-tests:
         container_name: webapi-unit-tests
         build: 
-            context: ../..
-            dockerfile: ../build/docker/web-app-tests.dockerfile
+            context: src
+            dockerfile: build/docker/web-app-tests.dockerfile
         volumes:
             - $TEST_RESULT_PATH:/app/test-results
 
