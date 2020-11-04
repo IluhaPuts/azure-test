@@ -29,12 +29,14 @@ stages:
           buildImages: true
           dockerComposeFile: 'build/docker-compose-unit-test/docker-compose.yaml'
           dockerComposeCommand: run webapi-unit-tests
+          dockerComposeFileArgs: |
+            TEST_RESULT_PATH=$(System.DefaultWorkingDirectory)
       
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'NUnit'
           testResultsFiles: '**/*.trx' 
-          searchFolder: '/app/test-results' # Optional
+          searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
           #mergeTestResults: false # Optional
           #failTaskOnFailedTests: false # Optional
           #testRunTitle: # Optional
