@@ -28,15 +28,15 @@ stages:
           dockerComposeFile: 'build/docker-compose-unit-test/docker-compose.yaml'
           dockerComposeCommand: run webapi-unit-tests
           dockerComposeFileArgs: |
-            TEST_RESULT_PATH=qa-results
+            TEST_RESULT_PATH=/qa/results
 
-      - script: 'cd qa-results && ls'
+      - script: 'cd qa/results && ls'
 
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'NUnit'
           testResultsFiles: '**/*.trx' 
-          searchFolder: 'qa-results' # Optional
+          searchFolder: '/qa-results' # Optional
           #mergeTestResults: false # Optional
           #failTaskOnFailedTests: false # Optional
           #testRunTitle: # Optional
