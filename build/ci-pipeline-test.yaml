@@ -8,8 +8,8 @@ stages:
   jobs:
   - job:
     steps:
-      - script: 'ls'
-      
+      - script: 'mkdir qa && cd qa && mkdir results'
+
       #- template: webapi-build.yaml
       - task: Docker@2
         displayName: build testwebapp
@@ -26,7 +26,7 @@ stages:
           action: Run services
           buildImages: true
           dockerComposeFile: 'build/docker-compose-unit-test/docker-compose.yaml'
-          dockerComposeCommand: run webapi-unit-tests
+          dockerComposeCommand: 'run webapi-unit-tests -v /qa/results:/app/test-results'
           dockerComposeFileArgs: |
             TEST_RESULT_PATH=/qa/results
 
