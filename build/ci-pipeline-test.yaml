@@ -27,7 +27,7 @@ stages:
           buildImages: true
           workingDirectory: '$(Agent.HomeDirectory)'
           dockerComposeFile: 'build/docker-compose-unit-test/docker-compose.yaml'
-          dockerComposeCommand: 'run webapi-unit-tests'
+          serviceName: 'webapi-unit-tests'
           dockerComposeFileArgs: |
             TEST_RESULT_PATH=/qa/results
       

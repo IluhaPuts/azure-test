@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS unit-test
 
 WORKDIR /app
 
-RUN echo "dotnet test test.webapp.tests.dll --results-directory /app/test-results --logger trx && exit 0 || exit 1" >> run-nunit-tests.sh
+RUN echo "echo \"stat tests\" && dotnet test test.webapp.tests.dll --results-directory /app/test-results --logger trx && exit 0 || exit 1" >> run-nunit-tests.sh
 
 COPY --from=base /app .
 
