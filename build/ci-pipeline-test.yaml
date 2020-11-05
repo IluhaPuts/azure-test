@@ -34,7 +34,7 @@ stages:
           action: Run services
           buildImages: false
           dockerComposeFile: 'build/docker-compose-unit-test/docker-compose.yaml'
-          serviceName: 'webapi-unit-tests'
+          dockerComposeCommand: run webapi-unit-tests
           dockerComposeFileArgs: |
             TEST_RESULT_PATH=/qa/results
       
@@ -45,8 +45,6 @@ stages:
       - script: 'ls $(Build.BinariesDirectory)'
       - script: 'ls $(Build.ArtifactStagingDirectory)'
       - script: 'ls $(Build.SourcesDirectory)'
-
-      - script: 'ls qa/results'
 
       - task: PublishTestResults@2
         inputs:
