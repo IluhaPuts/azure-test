@@ -19,35 +19,19 @@ stages:
           buildContext: ./src
           arguments: --rm --force-rm -t web_app_build:v1.0
       
-      - task: Docker@2
-        displayName: build webapp nunit
-        inputs:
-          command: build
-          repository: web_app_build
-          Dockerfile: ./build/docker/web-app-tests.dockerfile
-          buildContext: ./src
-          arguments: --rm --force-rm -t web_app_nunit_build:v1.0
-        
       - task: DockerCompose@0
         displayName: 'Execute unit tests'
         inputs:
           action: 'Run a Docker Compose command'
+          buildImages: true
           dockerComposeFile: 'build/docker-compose-unit-test/docker-compose.yaml'
           dockerComposeCommand: 'run webapi-unit-tests'
           dockerComposeFileArgs: |
             TEST_RESULT_PATH=$(Build.ArtifactStagingDirectory)
       
-      - script: 'ls $(Agent.HomeDirectory)'
-      - script: 'ls $(Agent.WorkFolder)'
-      - script: 'ls $(Agent.BuildDirectory)'
-      - script: 'ls $(Agent.BuildDirectory)/TestResults'
-      - script: 'ls $(Build.BinariesDirectory)'
-      - script: 'ls $(Build.ArtifactStagingDirectory)'
-      - script: 'ls $(Build.SourcesDirectory)'
-
       - task: PublishTestResults@2
         inputs:
-          testResultsFormat: 'NUnit'
+          testResultsFormat: 'VSTest'
           testResultsFiles: '**/*.trx' 
           searchFolder: '$(Build.ArtifactStagingDirectory)' # Optional
           #mergeTestResults: false # Optional
