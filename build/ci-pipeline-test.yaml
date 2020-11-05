@@ -49,7 +49,7 @@ stages:
         inputs:
           testResultsFormat: 'NUnit'
           testResultsFiles: '**/*.trx' 
-          searchFolder: '$(Agent.BuildDirectory)/TestResults' # Optional
+          searchFolder: '$(Build.ArtifactStagingDirectory)' # Optional
           #mergeTestResults: false # Optional
           #failTaskOnFailedTests: false # Optional
           #testRunTitle: # Optional
