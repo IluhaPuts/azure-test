@@ -34,6 +34,7 @@ stages:
       - script: 'ls $(Agent.HomeDirectory)'
       - script: 'ls $(Agent.WorkFolder)'
       - script: 'ls $(Agent.BuildDirectory)'
+      - script: 'ls $(Agent.BuildDirectory)/TestResults'
       - script: 'ls $(Build.BinariesDirectory)'
       - script: 'ls qa/results'
 
@@ -41,7 +42,7 @@ stages:
         inputs:
           testResultsFormat: 'NUnit'
           testResultsFiles: '**/*.trx' 
-          searchFolder: '/qa/results' # Optional
+          searchFolder: '$(Agent.BuildDirectory)/TestResults' # Optional
           #mergeTestResults: false # Optional
           #failTaskOnFailedTests: false # Optional
           #testRunTitle: # Optional
