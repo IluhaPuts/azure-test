@@ -29,6 +29,8 @@ stages:
           dockerComposeFileArgs: |
             TEST_RESULT_PATH=$(Build.ArtifactStagingDirectory)
       
+      - script: 'docker inspect iluhaputsazuretest_webapi-unit-tests:latest'
+
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'VSTest'
