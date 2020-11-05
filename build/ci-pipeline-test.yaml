@@ -25,18 +25,23 @@ stages:
         inputs:
           action: Run services
           buildImages: true
+          workingDirectory: '$(Agent.HomeDirectory)'
           dockerComposeFile: 'build/docker-compose-unit-test/docker-compose.yaml'
-          dockerComposeCommand: 'run webapi-unit-tests -v /qa/results:/app/test-results'
+          dockerComposeCommand: 'run webapi-unit-tests'
           dockerComposeFileArgs: |
             TEST_RESULT_PATH=/qa/results
-
-      - script: 'cd qa/results && ls'
+      
+      - script: 'ls $(Agent.HomeDirectory)'
+      - script: 'ls $(Agent.WorkFolder)'
+      - script: 'ls $(Agent.BuildDirectory)'
+      - script: 'ls $(Build.BinariesDirectory)'
+      - script: 'ls qa/results'
 
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'NUnit'
           testResultsFiles: '**/*.trx' 
-          searchFolder: '/qa-results' # Optional
+          searchFolder: '/qa/results' # Optional
           #mergeTestResults: false # Optional
           #failTaskOnFailedTests: false # Optional
           #testRunTitle: # Optional
