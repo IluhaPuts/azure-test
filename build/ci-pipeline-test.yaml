@@ -27,15 +27,15 @@ stages:
           dockerComposeFile: 'build/docker-compose-unit-test/docker-compose.yaml'
           dockerComposeCommand: 'run webapi-unit-tests'
           dockerComposeFileArgs: |
-            TEST_RESULT_PATH=$(Build.ArtifactStagingDirectory)
+            TEST_RESULT_PATH=$(Common.TestResultsDirectory)
       
-      - script: 'ls $(Build.ArtifactStagingDirectory)'
+      - script: 'ls $(Common.TestResultsDirectory)'
 
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'VSTest'
           testResultsFiles: '**/*.trx' 
-          searchFolder: '$(Build.ArtifactStagingDirectory)' # Optional
+          searchFolder: '$(Common.TestResultsDirectory)' # Optional
           mergeTestResults: true # Optional
           failTaskOnFailedTests: false # Optional
           #testRunTitle: # Optional
