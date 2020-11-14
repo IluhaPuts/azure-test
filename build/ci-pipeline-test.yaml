@@ -29,15 +29,15 @@ stages:
           dockerComposeFileArgs: |
             TEST_RESULT_PATH=$(Build.ArtifactStagingDirectory)
       
-      - script: 'docker inspect iluhaputsazuretest_webapi-unit-tests:latest'
+      - script: 'ls $(Build.ArtifactStagingDirectory)'
 
       - task: PublishTestResults@2
         inputs:
           testResultsFormat: 'VSTest'
           testResultsFiles: '**/*.trx' 
           searchFolder: '$(Build.ArtifactStagingDirectory)' # Optional
-          #mergeTestResults: false # Optional
-          #failTaskOnFailedTests: false # Optional
+          mergeTestResults: true # Optional
+          failTaskOnFailedTests: false # Optional
           #testRunTitle: # Optional
           #buildPlatform: # Optional
           #buildConfiguration: # Optional
